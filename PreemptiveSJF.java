@@ -97,6 +97,8 @@ public class PreemptiveSJF {
         // Output average times
         System.out.println("\nAverage Waiting Time = " + avgW);
         System.out.println("Average Turnaround Time = " + avgT);
+        
+        sc.close(); // Close the Scanner resource
     }
 
     public static void main(String[] args) {
