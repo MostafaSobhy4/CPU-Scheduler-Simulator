@@ -174,12 +174,12 @@
 //                 currentProcess.status = Status.RUNNING; // Set status to RUNNING
 //             }
 
-//             // STEP 5: Execute current process for 1 time unit
-//             if (currentProcess != null) {
-//                 System.out.println("  [Execute] Time " + currentTime + ": " + currentProcess);
-//                 currentProcess.remainingTime--;
-//                 currentTime++;
-//             }
+            // // STEP 5: Execute current process for 1 time unit
+            // if (currentProcess != null) {
+            //     System.out.println("  [Execute] Time " + currentTime + ": " + currentProcess);
+            //     currentProcess.remainingTime--;
+            //     currentTime++;
+            // }
 
 //             // STEP 6: Check if current process finished
 //             if (currentProcess.remainingTime == 0) {
@@ -329,7 +329,7 @@ public class PriorityScheduler {
             // Only age processes that are WAITING (not running, not completed)
             if (p.arrival <= currentTime && p.status == Status.WAITING) {
                 // Check if aging interval has passed since last age
-                if (currentTime - lastAgeTime.get(p.name) > agingInterval) {
+                if (currentTime - lastAgeTime.get(p.name) >= agingInterval ) {
                     int oldPriority = p.priority;
                     p.priority = Math.max(1, p.priority - 1); // Minimum priority is 1
                     lastAgeTime.put(p.name, currentTime);
@@ -434,10 +434,17 @@ public class PriorityScheduler {
                 currentProcess.status = Status.RUNNING; // Set status to RUNNING
             }
 
+            // // STEP 5: Execute current process for 1 time unit
+            // System.out.println("  [Execute] Time " + currentTime + ": " + currentProcess);
+            // currentProcess.remainingTime--;
+            // currentTime++;
+
             // STEP 5: Execute current process for 1 time unit
-            System.out.println("  [Execute] Time " + currentTime + ": " + currentProcess);
-            currentProcess.remainingTime--;
-            currentTime++;
+            if (currentProcess != null) {
+                System.out.println("  [Execute] Time " + currentTime + ": " + currentProcess);
+                currentProcess.remainingTime--;
+                currentTime++;
+            }
 
             // STEP 6: Check if current process finished
             if (currentProcess.remainingTime == 0) {
